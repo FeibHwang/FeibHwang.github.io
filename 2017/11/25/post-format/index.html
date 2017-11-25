@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="Hexo markdown基本语法配置 #一级标题：Level one header ##二级标题：Level two header ###三级标题：Level three header ####四级标题：Level four header #Insert Code block: 1$ hexo new &quot;M">
+<meta name="description" content="Hexo markdown基本语法配置 一级标题：Level one header二级标题：Level two header三级标题：Level three header四级标题：Level four headerInsert Code block:1$ hexo new &quot;My New Post&quot;">
 <meta name="keywords" content="guide">
 <meta property="og:type" content="article">
 <meta property="og:title" content="post format">
 <meta property="og:url" content="http://yoursite.com/2017/11/25/post-format/index.html">
 <meta property="og:site_name" content="飞白的博客">
-<meta property="og:description" content="Hexo markdown基本语法配置 #一级标题：Level one header ##二级标题：Level two header ###三级标题：Level three header ####四级标题：Level four header #Insert Code block: 1$ hexo new &quot;My New Post&quot; 123data List a = Cons a (List a)">
+<meta property="og:description" content="Hexo markdown基本语法配置 一级标题：Level one header二级标题：Level two header三级标题：Level three header四级标题：Level four headerInsert Code block:1$ hexo new &quot;My New Post&quot; 123data List a = Cons a (List a)            | Nil">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/11/25/post-format/%22http://wx1.sinaimg.cn/mw600/9ec19de8gy1fl571qy2sdj20p00zk11u.jpg%22">
-<meta property="og:updated_time" content="2017-11-25T10:56:09.956Z">
+<meta property="og:updated_time" content="2017-11-25T11:00:49.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="post format">
-<meta name="twitter:description" content="Hexo markdown基本语法配置 #一级标题：Level one header ##二级标题：Level two header ###三级标题：Level three header ####四级标题：Level four header #Insert Code block: 1$ hexo new &quot;My New Post&quot; 123data List a = Cons a (List a)">
+<meta name="twitter:description" content="Hexo markdown基本语法配置 一级标题：Level one header二级标题：Level two header三级标题：Level three header四级标题：Level four headerInsert Code block:1$ hexo new &quot;My New Post&quot; 123data List a = Cons a (List a)            | Nil">
 <meta name="twitter:image" content="http://yoursite.com/2017/11/25/post-format/%22http://wx1.sinaimg.cn/mw600/9ec19de8gy1fl571qy2sdj20p00zk11u.jpg%22">
 
 
@@ -303,15 +303,9 @@
 
       
         <p>Hexo markdown基本语法配置</p>
-<p>#一级标题：Level one header</p>
-<p>##二级标题：Level two header</p>
-<p>###三级标题：Level three header</p>
-<p>####四级标题：Level four header</p>
-<p>#Insert Code block:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h1 id="一级标题：Level-one-header"><a href="#一级标题：Level-one-header" class="headerlink" title="一级标题：Level one header"></a>一级标题：Level one header</h1><h2 id="二级标题：Level-two-header"><a href="#二级标题：Level-two-header" class="headerlink" title="二级标题：Level two header"></a>二级标题：Level two header</h2><h3 id="三级标题：Level-three-header"><a href="#三级标题：Level-three-header" class="headerlink" title="三级标题：Level three header"></a>三级标题：Level three header</h3><h4 id="四级标题：Level-four-header"><a href="#四级标题：Level-four-header" class="headerlink" title="四级标题：Level four header"></a>四级标题：Level four header</h4><h1 id="Insert-Code-block"><a href="#Insert-Code-block" class="headerlink" title="Insert Code block:"></a>Insert Code block:</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">List</span> a = <span class="type">Cons</span> a (<span class="type">List</span> <span class="title">a</span>)</span></span><br><span class="line">            | <span class="type">Nil</span></span><br><span class="line">              <span class="keyword">deriving</span> (<span class="type">Show</span>)</span><br></pre></td></tr></table></figure>
-<p>#Insert a picture</p>
-<p>##Insert by url address<br><img src="&quot;http://wx1.sinaimg.cn/mw600/9ec19de8gy1fl571qy2sdj20p00zk11u.jpg&quot;" alt="&quot;remote&quot;"></p>
+<h1 id="Insert-a-picture"><a href="#Insert-a-picture" class="headerlink" title="Insert a picture"></a>Insert a picture</h1><h2 id="Insert-by-url-address"><a href="#Insert-by-url-address" class="headerlink" title="Insert by url address"></a>Insert by url address</h2><p><img src="&quot;http://wx1.sinaimg.cn/mw600/9ec19de8gy1fl571qy2sdj20p00zk11u.jpg&quot;" alt="&quot;remote&quot;"></p>
 
       
     </div>
@@ -402,8 +396,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -456,6 +459,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一级标题：Level-one-header"><span class="nav-number">1.</span> <span class="nav-text">一级标题：Level one header</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二级标题：Level-two-header"><span class="nav-number">1.1.</span> <span class="nav-text">二级标题：Level two header</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级标题：Level-three-header"><span class="nav-number">1.1.1.</span> <span class="nav-text">三级标题：Level three header</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#四级标题：Level-four-header"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">四级标题：Level four header</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Insert-Code-block"><span class="nav-number">2.</span> <span class="nav-text">Insert Code block:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Insert-a-picture"><span class="nav-number">3.</span> <span class="nav-text">Insert a picture</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Insert-by-url-address"><span class="nav-number">3.1.</span> <span class="nav-text">Insert by url address</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
