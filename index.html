@@ -561,8 +561,11 @@
 <li>在main函数中，缩进是4个空格，不是制表符</li>
 <li><code>println!()</code>是一个Rust宏，使用<code>!</code>表示，这是与函数不同的地方</li>
 </ol>
-<p>运行程序：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rustc main.rs</span><br><span class="line">./main</span><br></pre></td></tr></table></figure></p>
-<h2 id="转换到Cargo"><a href="#转换到Cargo" class="headerlink" title="转换到Cargo"></a>转换到Cargo</h2><p><code>Cargo</code>是Rust的项目管理工具，Cargo的一个比较人性化的地方是它可以帮助我们自动管理程序依赖的库文件，这是非常重要的。</p>
+<p>运行程序：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rustc main.rs</span><br><span class="line">$ ./main</span><br></pre></td></tr></table></figure></p>
+<h2 id="转换到Cargo"><a href="#转换到Cargo" class="headerlink" title="转换到Cargo"></a>转换到Cargo</h2><p><code>Cargo</code>是Rust的项目管理工具，Cargo的一个比较人性化的地方是它可以帮助我们自动管理程序依赖的库文件，这是非常重要的。<br>基本命令：</p>
+<p>开启一个新项目：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cargo new hello_world --bin</span><br></pre></td></tr></table></figure></p>
+<p><code>--bin</code>参数表明这个项目的目标是一个可执行程序。Cargo会创建两个文件和一个目录：<code>Cargo.toml</code>和包含了<code>main.rs</code>文件的<code>src</code>目录。<code>Cargo.toml</code>负责管理项目的依赖库以及相关配置</p>
+<p>编译运行项目：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cargo build</span><br><span class="line">$ cargo run</span><br></pre></td></tr></table></figure></p>
 
           
         
