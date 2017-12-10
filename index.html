@@ -259,6 +259,259 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/10/2017-12-10-Python_Pandas_Note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Feibai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞白的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/10/2017-12-10-Python_Pandas_Note/" itemprop="url">Python Pandas Learn by Q&A</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T18:44:55+08:00">
+                2017-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>学习python pandas库的最佳方法是通过解决一个个问题学习</p>
+<h1 id="How-to-read-a-tabular-data-file-into-pandas"><a href="#How-to-read-a-tabular-data-file-into-pandas" class="headerlink" title="How to read a tabular data file into pandas"></a>How to read a tabular data file into pandas</h1><p>将表格型数据文件(excel, csv…)读入pandas十分简单<br>因为大家没有现成的数据文件，我们用一个URL代替，没错，<code>pandas.read_table</code>可以传入一个URL, 确认你可以访问到这个地址，大陆需要自备梯子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">pd.read_table(<span class="string">'http://bit.ly/chiporders'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>read_table默认数据是用tab分割的，如果数据使用其它符号分割（比如’|’）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">user_headers = [<span class="string">'use_id'</span>,<span class="string">'age'</span>,<span class="string">'gender'</span>,<span class="string">'occupation'</span>,<span class="string">'zip_code'</span>]</span><br><span class="line">pd.read_table(<span class="string">'http://bit.ly/movieusers'</span>, sep=<span class="string">'|'</span>, header=<span class="keyword">None</span>, names=user_headers)</span><br></pre></td></tr></table></figure></p>
+<p>在上面这个代码片段中我们从<code>http://bit.ly/movieusers</code>这个URL导入了数据，但是数据是用’|’分割的，因此我们要声明seperator:<code>sep=&#39;|&#39;</code>, <code>header=None, names=user_headers</code>则告诉python第一行的数据不是header,将其忽略并换上自定义的header <code>user_headers</code><br><code>read_tables</code>有大量的控制参数，可以参考官网的定义</p>
+<h1 id="How-to-select-a-pandas-series-from-a-DataFrame"><a href="#How-to-select-a-pandas-series-from-a-DataFrame" class="headerlink" title="How to select a pandas series from a DataFrame"></a>How to select a pandas series from a DataFrame</h1><p>实验代码：这个URL记录了历史上目击UFO的相关数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">ufo = pd.read_csv(<span class="string">'http://bit.ly/uforeports'</span>)</span><br><span class="line">type(ufo)</span><br><span class="line"></span><br><span class="line">ufo.head()</span><br><span class="line">ufo[<span class="string">'City'</span>]</span><br><span class="line">type(ufo[<span class="string">'City'</span>])</span><br><span class="line"></span><br><span class="line">ufo.City</span><br><span class="line"></span><br><span class="line">ufo[<span class="string">'Location'</span>] = ufo.City + <span class="string">', '</span> + ufo.State</span><br></pre></td></tr></table></figure></p>
+<p><code>read_csv</code>函数与<code>read_table</code>几乎一样，唯一一点不同的是<code>read_csv</code>使用<code>,</code>作为默认seperator<br><code>ufo.head()</code> 显示ufo数据的前5行<br>pandas会自动将frame的series转换成frame的方法，因此<code>ufo[&#39;City&#39;] == ufo.City</code>，但是方法有一些局限性<br><code>ufo[&#39;Location&#39;] = ufo.City + &#39;, &#39; + ufo.State</code>: 创建一个新的series location, 是原来两个series的组合</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/29/2017-11-26-Rust-Note-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Feibai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞白的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/29/2017-11-26-Rust-Note-2/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-29T19:17:59+08:00">
+                2017-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Rust 基本语法：</p>
+<h1 id="变量绑定"><a href="#变量绑定" class="headerlink" title="变量绑定"></a>变量绑定</h1><p>Rust一个明显的特征是默认变量是绑定切不可修改的：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;</span><br><span class="line">	<span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>let</code>被用来声明一个绑定，<code>x</code>于数值5绑定起来</p>
+<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><p>Rust的<code>let</code>比一般语言的声明前缀更加强大，它的左边可以是一个<code>模式</code>：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> (x,y) = (<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="类型注解"><a href="#类型注解" class="headerlink" title="类型注解"></a>类型注解</h2><p>Rust依然是静态类型语言，意味着任何声明的类型在编译期就应该明确，之前我们并没有加类型声明是因为Rust有类型推断的功能。<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x: <span class="built_in">i32</span> = <span class="number">5</span>;</span><br></pre></td></tr></table></figure></p>
+<p>完整的Rust system type可以在<a href="https://doc.rust-lang.org/beta/reference/types.html" target="_blank" rel="noopener">这里</a>找到</p>
+<h2 id="可变性"><a href="#可变性" class="headerlink" title="可变性"></a>可变性</h2><p>Rust绑定默认是不可变的，这有别于传统的C++/python之类的语言，如果我们声明了一个绑定并在之后试图修改：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line">x = <span class="number">10</span>;</span><br></pre></td></tr></table></figure></p>
+<p>编译器就会报错。这个feature确保了Rust的安全性。如果我们希望声明一个可修改的变量，需要使用<code>mut</code>关键字：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> x = <span class="number">5</span>;</span><br><span class="line">x = <span class="number">10</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这个feature看起来有点像C++里的<code>const</code>,但它比<code>const</code>更加安全，在C++中如果我们声明了一个const对象，直接对其修改时会报错的，这是const的性质所决定的。但是如果我们声明了一个non-const指针并将其指向这个const值，我们便可以通过修改指针来改变这个const value. 这是一个C++常见但不太好debug的bug.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/27/2017-04-28-Parallelism-Advantages-in-Functional-Programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -759,7 +1012,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/25/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/26/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Feibai">
@@ -778,7 +1031,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/25/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2017/11/26/hello-world/" itemprop="url">Hello World</a></h1>
         
 
         <div class="post-meta">
@@ -790,7 +1043,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-26T02:22:08+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-26T00:52:37+08:00">
                 2017-11-26
               </time>
             
@@ -1043,7 +1296,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1065,7 +1318,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

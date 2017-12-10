@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python,ML,Note," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="学习python pandas库的最佳方法是通过解决一个个问题学习 How to read a tabular data file into pandas将表格型数据文件(excel, csv…)读入pandas十分简单因为大家没有现成的数据文件，我们用一个URL代替，没错，pandas.read_table可以传入一">
+<meta name="keywords" content="python,ML,Note">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test_post">
-<meta property="og:url" content="http://yoursite.com/2017/11/23/test-post/index.html">
+<meta property="og:title" content="Python Pandas Learn by Q&amp;A">
+<meta property="og:url" content="http://yoursite.com/2017/12/10/2017-12-10-Python_Pandas_Note/index.html">
 <meta property="og:site_name" content="飞白的博客">
+<meta property="og:description" content="学习python pandas库的最佳方法是通过解决一个个问题学习 How to read a tabular data file into pandas将表格型数据文件(excel, csv…)读入pandas十分简单因为大家没有现成的数据文件，我们用一个URL代替，没错，pandas.read_table可以传入一个URL, 确认你可以访问到这个地址，大陆需要自备梯子12import pand">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-23T15:13:32.602Z">
+<meta property="og:updated_time" content="2017-12-10T09:04:39.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test_post">
+<meta name="twitter:title" content="Python Pandas Learn by Q&amp;A">
+<meta name="twitter:description" content="学习python pandas库的最佳方法是通过解决一个个问题学习 How to read a tabular data file into pandas将表格型数据文件(excel, csv…)读入pandas十分简单因为大家没有现成的数据文件，我们用一个URL代替，没错，pandas.read_table可以传入一个URL, 确认你可以访问到这个地址，大陆需要自备梯子12import pand">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/23/test-post/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/10/2017-12-10-Python_Pandas_Note/"/>
 
 
 
 
 
-  <title>test_post | 飞白的博客</title>
+  <title>Python Pandas Learn by Q&A | 飞白的博客</title>
   
 
 
@@ -259,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/23/test-post/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/10/2017-12-10-Python_Pandas_Note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Feibai">
@@ -276,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test_post</h1>
+          <h1 class="post-title" itemprop="name headline">Python Pandas Learn by Q&A</h1>
         
 
         <div class="post-meta">
@@ -288,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T23:13:32+08:00">
-                2017-11-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T18:44:55+08:00">
+                2017-12-10
               </time>
             
 
@@ -326,7 +330,13 @@
       
 
       
-        
+        <p>学习python pandas库的最佳方法是通过解决一个个问题学习</p>
+<h1 id="How-to-read-a-tabular-data-file-into-pandas"><a href="#How-to-read-a-tabular-data-file-into-pandas" class="headerlink" title="How to read a tabular data file into pandas"></a>How to read a tabular data file into pandas</h1><p>将表格型数据文件(excel, csv…)读入pandas十分简单<br>因为大家没有现成的数据文件，我们用一个URL代替，没错，<code>pandas.read_table</code>可以传入一个URL, 确认你可以访问到这个地址，大陆需要自备梯子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">pd.read_table(<span class="string">'http://bit.ly/chiporders'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>read_table默认数据是用tab分割的，如果数据使用其它符号分割（比如’|’）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">user_headers = [<span class="string">'use_id'</span>,<span class="string">'age'</span>,<span class="string">'gender'</span>,<span class="string">'occupation'</span>,<span class="string">'zip_code'</span>]</span><br><span class="line">pd.read_table(<span class="string">'http://bit.ly/movieusers'</span>, sep=<span class="string">'|'</span>, header=<span class="keyword">None</span>, names=user_headers)</span><br></pre></td></tr></table></figure></p>
+<p>在上面这个代码片段中我们从<code>http://bit.ly/movieusers</code>这个URL导入了数据，但是数据是用’|’分割的，因此我们要声明seperator:<code>sep=&#39;|&#39;</code>, <code>header=None, names=user_headers</code>则告诉python第一行的数据不是header,将其忽略并换上自定义的header <code>user_headers</code><br><code>read_tables</code>有大量的控制参数，可以参考官网的定义</p>
+<h1 id="How-to-select-a-pandas-series-from-a-DataFrame"><a href="#How-to-select-a-pandas-series-from-a-DataFrame" class="headerlink" title="How to select a pandas series from a DataFrame"></a>How to select a pandas series from a DataFrame</h1><p>实验代码：这个URL记录了历史上目击UFO的相关数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">ufo = pd.read_csv(<span class="string">'http://bit.ly/uforeports'</span>)</span><br><span class="line">type(ufo)</span><br><span class="line"></span><br><span class="line">ufo.head()</span><br><span class="line">ufo[<span class="string">'City'</span>]</span><br><span class="line">type(ufo[<span class="string">'City'</span>])</span><br><span class="line"></span><br><span class="line">ufo.City</span><br><span class="line"></span><br><span class="line">ufo[<span class="string">'Location'</span>] = ufo.City + <span class="string">', '</span> + ufo.State</span><br></pre></td></tr></table></figure></p>
+<p><code>read_csv</code>函数与<code>read_table</code>几乎一样，唯一一点不同的是<code>read_csv</code>使用<code>,</code>作为默认seperator<br><code>ufo.head()</code> 显示ufo数据的前5行<br>pandas会自动将frame的series转换成frame的方法，因此<code>ufo[&#39;City&#39;] == ufo.City</code>，但是方法有一些局限性<br><code>ufo[&#39;Location&#39;] = ufo.City + &#39;, &#39; + ufo.State</code>: 创建一个新的series location, 是原来两个series的组合</p>
+
       
     </div>
     
@@ -341,6 +351,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/ML/" rel="tag"># ML</a>
+          
+            <a href="/tags/Note/" rel="tag"># Note</a>
+          
+        </div>
+      
 
       
       
@@ -350,15 +370,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/11/29/2017-11-26-Rust-Note-2/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/26/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -410,8 +430,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -477,6 +506,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-read-a-tabular-data-file-into-pandas"><span class="nav-number">1.</span> <span class="nav-text">How to read a tabular data file into pandas</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-select-a-pandas-series-from-a-DataFrame"><span class="nav-number">2.</span> <span class="nav-text">How to select a pandas series from a DataFrame</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
